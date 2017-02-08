@@ -4,12 +4,12 @@
 
 Project:
 --------
-	- Project Cloned From: https://github.com/CDavantzis/SSW690-Project
-	- Project Can Be Forked From: https://github.com/Alkamoore/SSW800-CourseReccomendations
+ - Project Cloned From: https://github.com/CDavantzis/SSW690-Project
+ - Project Can Be Forked From: https://github.com/Alkamoore/SSW800-CourseReccomendations
 
 Objective:
 ----------
-	Develop course recommendation software to assist members of the Stevens community with the course selection process by allowing them to see what courses they would enjoy or in the case of faculty, suggest to students based on their course history. 
+Develop course recommendation software to assist members of the Stevens community with the course selection process by allowing them to see what courses they would enjoy or in the case of faculty, suggest to students based on their course history. 
 
 New Features:
 ---------
