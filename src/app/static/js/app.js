@@ -87,7 +87,8 @@ $(document).ready(function () {
     //Side control options Scheduler/Courses
     function cSideCtrl($scope, $log, $rootScope, ngDialog) {
         var self = this;
-        self.nav = 'course_info';
+        self.nav = 'scheduler';
+		$rootScope.body = 'scheduler';
         self.searchTimeout = false;
 
         self.semesters = [
@@ -117,9 +118,16 @@ $(document).ready(function () {
 
         self.setNav = function (page) {
             console.log("nav = " + page);
+			console.log("body = " + page);
+			$rootScope.body = page;
             self.nav = page;
+			
         };
-
+		
+		$rootScope.getBody = function () {
+            return $rootScope.body;
+        };
+	
         self.getNav = function () {
             return self.nav;
         };

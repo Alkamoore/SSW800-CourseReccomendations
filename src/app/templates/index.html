@@ -29,7 +29,7 @@
     <script src="{{ url_for('static', filename='js/app.js') }}" type="text/javascript"></script>
 </head>
 <body ng-app="scheduler" class="flex-container" layout="column">
-		<md-toolbar style="background-color:#FFFFFF; height:106px">
+		<md-toolbar>
 			<div id="stev-header"></div>
 		</md-toolbar>
 		
@@ -55,24 +55,22 @@
 					</form>
 					
 					<md-content>
-						<div ng-show="side.getNav() === 'course_info'" ng-hide="side.getNav() !== 'course_info'" id="course_tree" flex></div>
-						<div ng-show="side.getNav() === 'scheduler'" ng-hide="side.getNav() !== 'scheduler'" id="schedule_tree" flex></div>
+						<div ng-show="side.getNav('course_info')" ng-hide="side.getNav() !== 'course_info'" id="course_tree" flex></div>
+						<div ng-show="side.getNav('scheduler')" ng-hide="side.getNav() !== 'scheduler'" id="schedule_tree" flex></div>
 					</md-content>
 				</div>
-			</md-sidenav>
-		</div>
-
+			</div>
+		</md-sidenav>	
 		<md-content flex>
 			<div layout="column" layout-fill ng-cloak flex>
 				
 				<tab-navigation></tab-navigation>
+				<div id="reccomendations" ng-show="getBody('course_info')" ng-hide="getBody() !== 'course_info'" flex><h1>THIS IS WHERE COURSE INFORMATION/RECCOMENDATIONS WILL GO</h1></div>
+				<div ng-show="getBody('scheduler')" ng-hide="getBody() !== 'scheduler'" id="calendar" flex></div>
 				
-				<div layout-align="center center" flex>
-					<div id='calendar'></div>
-				</div >
+					
 			</div>
 		</md-content>
-		
 	</section>
 </body>
 </html>

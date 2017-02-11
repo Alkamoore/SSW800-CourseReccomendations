@@ -21,28 +21,53 @@ form {
 	background-image: url("/static/img/stevens_logo.gif");
 	background-position: left top;
 	background-repeat: no-repeat;
+	height: 150px;
+	width: 250px;
 	background-size: 250px, 106px;
 	background-color: #FFFFFF;
 	padding-left: 5px;
 	color: #1a6ec5;
 	font-size: 24px;
 	font-weight: bold;
-	height: 106px;
-	width: 250px;
+}
+
+/* Toolbar Styling */
+md-toolbar {
+	background-color: #FFFFFF; 
+	padding-left: 20px; 
+	padding-top: 5px;
+	height:150px
+}
+
+md-toolbar._md-toolbar-transitions, md-toolbar._md {
+	background-color: #FFFFFF; 
 }
 
 /* Side bar navigation button codes */
 md-nav-bar span{
 	color: #FFFFFF;
+	text-transform: uppercase;
 }
+
 md-nav-bar .md-nav-bar {
 	background-color: #9D1535;
 }
+
 md-nav-bar md-nav-ink{
 	background-color: #7e102a;
 }
+
 md-nav-bar md-nav-ink-bar{
 	background-color: #BBBCBE;
+}
+
+md-select {
+	font-size: 14px;
+	margin: 10px 0px 26px;
+}
+
+md-select .md-select-value {
+	border-bottom-color: rgba(0, 0, 0, 0);
 }
 
 /* Schedule selector tab codes */
