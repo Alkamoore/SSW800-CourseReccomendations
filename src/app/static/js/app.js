@@ -20,10 +20,23 @@ $(document).ready(function () {
 
     angular.module('scheduler', ['ngMaterial', 'ngDialog'])
         .controller('cTabModule', cTabModule)
-        .controller('cToggleNavigation', cToggleNavigation)
+        .controller('cNavigation', cNavigation)
         .controller('cSideCtrl', cSideCtrl)
         .controller('cOverlayCtrl', cOverlayCtrl)
-        .directive('tabNavigation', tabNavigation);
+        .controller('cBody', cBody);
+		
+	/*function cBody($scope, $log, $rootScope) {
+		var self = this;
+		self.body = 'scheduler';
+		
+		$rootscope.$on('scheduler', function() {
+			$log.info("Navigate to schedule");
+			return {
+				restrict: 'E',
+				templateUrl 'static/html/calendar.html'
+				};
+		}
+	}*/
 
     //tab module for optimal class selections
     function cTabModule($scope, $log, $rootScope) {
@@ -57,8 +70,8 @@ $(document).ready(function () {
 
     }
 
-    //Toggles side Navigation bar on and off
-    function cToggleNavigation($scope, $mdSidenav, $log) {
+    //Toggles side Navigation bar on and off (Note: Currently Disabled)
+    function cNavigation($scope, $mdSidenav, $log) {
         $scope.toggleLeft = buildToggler('left');
 
         $scope.toggleLeft = function () {
@@ -290,14 +303,8 @@ $(document).ready(function () {
             $('#schedule_tree').jstree(true).select_node(course_letter + ' ' + course_number);
         };
     }
-
-    //Angular Element Directives
-    function tabNavigation($log) {
-        $log.info("tabNavigationFunction");
-        return {
-            restrict: 'E',
-            templateUrl: 'static/html/tabNavigation.html'
-        };
-    }
+	
+	function cBody($scope, $log, $rootScope) {
+	}
 
 })();
