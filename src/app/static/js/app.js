@@ -178,11 +178,11 @@ $(document).ready(function () {
                         console.log(data);
                         var dialog = ngDialog.open({
                             template: '<div ng-controller="cOverlayCtrl as overlay">' +
-                            '<p>Course Info:</p>' +
-                            '<div><p>Name: ' + data.name + '</p><p>' + data.letter + ' ' + data.number + '</p></div>' +
-                            '<div><p>Description: </p>' + data.details + '</div>' +
+                            '<h2>Course Info:</h2>' +
+                            '<div><p><b>Name:</b> ' + data.name + '</p><p><b>Course Number: </b>' + data.letter + ' ' + data.number + '</p></div>' +
+                            '<div><p><b>Credits:</b> ' + data.credits + '</p></div>' +
+                            '<div><p><b>Description:</b> ' + data.details + '</p></div>' +
                             '<br />' +
-                            '<div><button class="inline close-this-dialog" ng-click="overlay.selectCourseCb(\'' + data.letter.replace(/^#\?/, "") + '\',' + data.number + ')">Select Class</button></div>' +
                             '</div>',
                             className: 'ngdialog-theme-default',
                             plain: true, /*Change this to false for external templates */
