@@ -32,43 +32,32 @@
 		<md-toolbar>
 			<div id="stev-header"></div>
 		</md-toolbar>
-		
+		<div ng-controller="cSideCtrl as side" flex>
+			<md-nav-bar md-selected-nav-item="side.nav" nav-bar-aria-label="navigation links">  
+			<md-nav-item md-nav-click="side.setNav('login')" name="login">Login</md-nav-item>
+			<md-nav-item md-nav-click="side.setNav('scheduler')" name="scheduler">Scheduler</md-nav-item>
+			<md-nav-item md-nav-click="side.setNav('course_info')" name="course_info">Course Info</md-nav-item>
+			<md-select ng-model="side.selectedSemester" ng-change="side.setSemester()" placeholder="{%raw%}{{ side.selectedSemester.name }}{%endraw%}">
+			<md-option ng-value="semester" ng-repeat="semester in side.semesters">{%raw%}{{ semester.name }}{%endraw%}</md-option></md-select></md-nav-bar>
+		</div>
 		<section layout="row" layout-fill ng-cloak flex>
-		<div ng-controller="cToggleNavigation">
+		
+		<div ng-controller="cNavigation">
 			<md-sidenav class="md-sidenav-left" md-component-id="left" 
 			layout="column" layout-fill ng-cloak md-is-open="true" md-is-locked-open="isSidebarOpen()" md-disable-backdrop>	
-				<div ng-controller="cSideCtrl as side" layout="column" flex>
-				
-					<md-nav-bar md-selected-nav-item="side.nav" nav-bar-aria-label="navigation links">  
-						<md-nav-item md-nav-click="side.setNav('scheduler')" name="scheduler">Scheduler</md-nav-item>
-						<md-nav-item md-nav-click="side.setNav('course_info')" name="course_info">Course Info</md-nav-item>
-						<md-select ng-model="side.selectedSemester" ng-change="side.setSemester()" placeholder="{%raw%}{{ side.selectedSemester.name }}{%endraw%}">
-							<md-option ng-value="semester" ng-repeat="semester in side.semesters">{%raw%}{{ semester.name }}{%endraw%}</md-option>
-						</md-select>
-					</md-nav-bar>
-					
-					<form ng-submit="$event.preventDefault()" layout-align="center center">
-						<md-input-container>
-							<input ng-keyup="side.searchTree(searchBar)" id="searchBar" ng-model="searchBar" placeholder="Enter class name" md-sidenav-focus></input>
-						</md-input-container>
-						<md-button class="md-button" ng-click="side.clearSelected()" ng-show="side.getNav() === 'scheduler'" ng-hide="side.getNav() !== 'scheduler'">Clear Classes</md-button>
-					</form>
-					
-					<md-content>
-						<div ng-show="side.getNav('course_info')" ng-hide="side.getNav() !== 'course_info'" id="course_tree" flex></div>
-						<div ng-show="side.getNav('scheduler')" ng-hide="side.getNav() !== 'scheduler'" id="schedule_tree" flex></div>
-					</md-content>
-				</div>
+					<div ng-switch="body" >
+						<c-search ng-switch-when="scheduler"></c-search>
+						<c-search ng-switch-when="course_info"></c-search>
+						<c-course-info ng-switch-when="course_info"></c-course-info>
+					</div>
 			</div>
 		</md-sidenav>	
 		<md-content flex>
-			<div layout="column" layout-fill ng-cloak flex>
-				
-				<tab-navigation></tab-navigation>
-				<div id="reccomendations" ng-show="getBody('course_info')" ng-hide="getBody() !== 'course_info'" flex><h1>THIS IS WHERE COURSE INFORMATION/RECCOMENDATIONS WILL GO</h1></div>
-				<div ng-show="getBody('scheduler')" ng-hide="getBody() !== 'scheduler'" id="calendar" flex></div>
-				
-					
+		
+			<div layout="column" layout-fill ng-cloak flex ng-switch="body">
+				<c-login-body ng-switch-when="login"></c-login-body>
+				<c-course-body ng-switch-when="course_info"></c-course-body>
+				<c-calendar-body ng-switch-when="calendar"></c-calendar-body>
 			</div>
 		</md-content>
 	</section>
