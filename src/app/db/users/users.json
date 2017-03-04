@@ -1,0 +1,121 @@
+[ 
+  { 
+    "name" : "Alexis Moore",
+    "id" : "amoore",
+	"email" : "amoore@stevens.edu",
+    "password" : "Stevens",
+    "role" : "student",
+    "currGPA" : 3.7,
+	"advisorid": "jrowland",
+	"advisorname": "James Rowland",
+    "takenCourses" : {
+      "courseSet" : [ 
+        "SSW 540",
+        "SSW 555",
+        "SSW 564",
+        "SSW 565",
+        "SSW 567",
+        "SSW 533",
+        "CS 581",
+		"CS 573",
+        "CS 695"
+      ]
+    }
+  },
+   { 
+    "name" : "Billy Dann",
+    "id" : "bdann",
+	"email" : "bdann@stevens.edu",
+    "password" : "Stevens",
+    "role" : "student",
+    "currGPA" : 3.65,
+	"advisorid": "jrowland",
+	"advisorname": "James Rowland",
+    "takenCourses" : {
+      "courseSet" : [ 
+        "SSW 540",
+        "SSW 555",
+        "SSW 564",
+        "SSW 565",
+        "SSW 567",
+        "SSW 533",
+        "SSW 690",
+		"SSW 695"
+      ]
+    }
+  },
+   { 
+    "name" : "Laura Cerr",
+    "id" : "lcerr",
+	"email" : "lcerr@stevens.edu",
+    "password" : "Stevens",
+    "role" : "student",
+    "currGPA" : 4.0,
+	"advisorid": "bgallen",
+	"advisorname": "Brooke Gallen",
+    "takenCourses" : {
+      "courseSet" : [ 
+        "SSW 540",
+        "SSW 555",
+        "SSW 564",
+        "SSW 565",
+        "SSW 567",
+        "SSW 533",
+        "SSW 690",
+		"CS 695"
+      ]
+    }
+  },
+   { 
+    "name" : "James Rowland",
+    "id" : "jrowland",
+	"email" : "james.rowland@stevens.edu",
+    "password" : "Stevens",
+    "role" : "faculty",
+    "taughtCourses" : {
+      "courseSet" : [ 
+        "SSW 540",
+        "SSW 555",
+        "SSW 565",
+        "SSW 533",
+        "SSW 690",
+		"SSW 695"
+      ]
+    },
+	"advisees" : {
+      "adviseeIdSet" : [ 
+        "amoore",
+        "bdann"
+      ]
+	}
+  },
+   { 
+    "name" : "Brooke Gallen",
+    "id" : "bgallen",
+	"email" : "brooke.gallen@stevens.edu",
+    "password" : "Stevens",
+    "role" : "faculty",
+    "taughtCourses" : {
+      "courseSet" : [ 
+        "SSW 555",
+        "SSW 564",
+        "SSW 567",
+        "CS 581",
+		"CS 573",
+        "CS 695"
+      ]
+    },
+	"advisees" : {
+      "adviseeIdSet" : [ 
+        "lcerr"
+      ]
+	}
+  },
+  { 
+    "name" : "Jack Kelly",
+    "id" : "jkelly",
+	"email" : "jack.kelly@stevens.edu",
+    "password" : "Stevens",
+    "role" : "administrator"
+  }
+]

@@ -15,10 +15,11 @@ if __name__ == "__main__":
     parser.add_argument("--courses",  action="store_true")
     parser.add_argument("--degrees",  action="store_true")
     parser.add_argument("--schedule",  action="store_true")
+    parser.add_argument("--users",  action="store_true")
     args = parser.parse_args()
 
     flask_app.config.from_object(config.BaseConfig)
     with flask_app.app_context():
-        db.update(update_courses=args.courses, update_degrees=args.degrees, update_schedule=args.schedule)
+        db.update(update_courses=args.courses, update_degrees=args.degrees, update_schedule=args.schedule, update_users=args.users)
 
 
