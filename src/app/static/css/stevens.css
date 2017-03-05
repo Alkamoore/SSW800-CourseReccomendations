@@ -44,6 +44,10 @@ md-toolbar._md-toolbar-transitions, md-toolbar._md {
 }
 
 /* Side bar navigation button codes */
+md-nav-bar {
+	padding: 5px;
+}
+
 md-nav-bar span{
 	color: #FFFFFF;
 	text-transform: uppercase;
