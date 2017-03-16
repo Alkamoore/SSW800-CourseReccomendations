@@ -34,7 +34,7 @@
 		</md-toolbar>
 		<div ng-controller="cSideCtrl as side" flex>
 			<md-nav-bar md-selected-nav-item="side.nav" nav-bar-aria-label="navigation links">
-			<md-nav-item md-nav-click="side.setNav('login')" name="login">Login</md-nav-item>
+			<md-nav-item md-nav-click="side.setNav('student_info')" name="student_info">Student Info</md-nav-item>
 			<!--<md-nav-item md-nav-click="side.setNav('scheduler')" name="scheduler">Scheduler</md-nav-item>-->
 			<md-nav-item md-nav-click="side.setNav('course_info')" name="course_info">Course Info</md-nav-item>
 			<md-select ng-model="side.selectedSemester" ng-change="side.setSemester()" placeholder="{%raw%}{{ side.selectedSemester.name }}{%endraw%}">
@@ -46,16 +46,17 @@
 			<md-sidenav class="md-sidenav-left" md-component-id="left" 
 			layout="column" layout-fill ng-cloak md-is-open="true" md-is-locked-open="isSidebarOpen()" md-disable-backdrop>	
 					<div ng-switch="body" >
-						<c-search ng-switch-when="scheduler"></c-search>
+						<c-student-search ng-switch-when="student_info"></c-student-search>
 						<c-search ng-switch-when="course_info"></c-search>
 						<c-course-info ng-switch-when="course_info"></c-course-info>
+						<c-student-info ng-switch-when="student_info"></c-student-info>
 					</div>
 			</div>
 		</md-sidenav>	
 		<md-content flex>
 		
 			<div layout="column" layout-fill ng-cloak flex ng-switch="body">
-				<c-login-body ng-switch-when="login"></c-login-body>
+				<c-student-body ng-switch-when="student_info"></c-student-body>
 				<c-course-body ng-switch-when="course_info"></c-course-body>
 				<c-calendar-body ng-switch-when="calendar"></c-calendar-body>
 			</div>

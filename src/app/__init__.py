@@ -2,6 +2,7 @@ import os
 
 from flask import Flask, render_template, jsonify, abort, request
 from werkzeug.local import LocalProxy
+from flask_cors import CORS
 from .context import get_db
 
 flask_app = Flask(__name__)
@@ -10,6 +11,7 @@ mongo_client = LocalProxy(get_db)
 from . import db
 from .demos import demos
 flask_app.register_blueprint(demos)
+CORS(flask_app)
 
 
 @flask_app.url_defaults
@@ -45,7 +47,6 @@ def static_file_hash(filename):
 def home():
     return render_template('index.html')
 
-
 @flask_app.route('/api/courses/list')
 def get_courses():
     """ List all courses in database """
@@ -56,6 +57,27 @@ def get_courses():
 def get_course_tree():
     """ List all courses in database in a tree """
     return jsonify(results=list(db.catalog.courses.get_tree()))
+	
+@flask_app.route('/api/students/tree')
+def get_student_tree():
+    """ List all courses in database in a tree """
+    return jsonify(results=list(db.students.get_tree()))
+	
+@flask_app.route('/api/students/info')
+def get_student_info():
+    """ Get the student info for a specified course """
+    name = request.args.get('name')
+
+    if (name is None):
+        abort(400)
+
+    r = mongo_client.students.students.find_one({"name": name},
+                                       {'_id': False})
+    if r is not None:
+        return jsonify(r)
+
+    abort(404)
+
 
 
 @flask_app.route('/api/courses/info')

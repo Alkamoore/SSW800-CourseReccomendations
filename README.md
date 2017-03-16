@@ -13,8 +13,8 @@ Develop course recommendation software to assist members of the Stevens communit
 
 New Features:
 ---------
-- Login System for students and faculty
-	 - Different views based on role
+- Student Selection
+	 - Select who you are based on name/cwid
 - Recommendation System 
 	 - Review courses taken
 	 - Recommend Course to Others
@@ -27,9 +27,29 @@ Features from C. Davantzis SSW690 Project:
 	 - Class name, Time, Occupancy
  - Course Information
 	 - Displays name, relevant description, course number
+	 
+Running Notes
+---------
+The database can be populated from the command line by using update_db.py --courses --degrees --schedule --students
+
+Note, due to privacy concerns the student.json has not been uploaded. Instead create your own using the following format 
+
+  { 
+    "name" : "John Smith",
+    "cwid" : "12345678",
+	"advisor" : "Jane Doe",
+	"major" : "SSE",
+    "courses" : [
+      [ 
+		"SSW 540",
+		"SSW 555"
+      ]
+    ]
+  }
+
 
 Requirements
-------------
+---------
 	Local installation mongodb
 	Flask 
 	Python 3+
