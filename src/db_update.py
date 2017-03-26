@@ -16,10 +16,11 @@ if __name__ == "__main__":
     parser.add_argument("--degrees",  action="store_true")
     parser.add_argument("--schedule",  action="store_true")
     parser.add_argument("--students",  action="store_true")
+    parser.add_argument("--popularity",  action="store_true")
     args = parser.parse_args()
 
     flask_app.config.from_object(config.BaseConfig)
     with flask_app.app_context():
-        db.update(update_courses=args.courses, update_degrees=args.degrees, update_schedule=args.schedule, update_students=args.students)
+        db.update(update_courses=args.courses, update_degrees=args.degrees, update_schedule=args.schedule, update_students=args.students, update_popularity=args.popularity)
 
 

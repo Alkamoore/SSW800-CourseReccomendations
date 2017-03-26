@@ -52,7 +52,6 @@ def get_courses():
     """ List all courses in database """
     return jsonify(results=list(db.catalog.courses.get_all()))
 
-
 @flask_app.route('/api/courses/tree')
 def get_course_tree():
     """ List all courses in database in a tree """
@@ -63,15 +62,25 @@ def get_student_tree():
     """ List all courses in database in a tree """
     return jsonify(results=list(db.students.get_tree()))
 	
+@flask_app.route('/api/popularity/major')
+def get_popular_for_major():
+    """ List all courses in database in a tree """
+    return jsonify(results=list(db.popularity.find_popular_elective_for_major()))
+
+@flask_app.route('/api/popularity/nonmajor')
+def get_popular_for_nonmajor():
+    """ List all courses in database in a tree """
+    return jsonify(results=list(db.popularity.find_popular_elective_for_nonmajor()))
+	
 @flask_app.route('/api/students/info')
 def get_student_info():
     """ Get the student info for a specified course """
-    name = request.args.get('name')
+    cwid = request.args.get('cwid')
 
-    if (name is None):
+    if (cwid is None):
         abort(400)
 
-    r = mongo_client.students.students.find_one({"name": name},
+    r = mongo_client.students.students.find_one({"cwid": cwid},
                                        {'_id': False})
     if r is not None:
         return jsonify(r)

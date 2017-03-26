@@ -1,0 +1,218 @@
+[
+  {
+    "course": "SYS 800",
+    "nonmajor": "221",
+    "major": "473",
+	"required": "true"
+	},
+  {
+    "course": "SYS 960",
+    "nonmajor": "25",
+    "major": "259",
+	"required": "false"
+	},
+  {
+    "course": "SYS 660",
+    "nonmajor": "388",
+    "major": "202",
+	"required": "false"
+	},
+  {
+    "course": "SYS 605",
+    "nonmajor": "250",
+    "major": "227",
+	"required": "true"
+	},
+  {
+    "course": "SYS 625",
+    "nonmajor": "327",
+    "major": "162",
+	"required": "true"
+	},
+  {
+    "course": "SYS 645",
+    "nonmajor": "68",
+    "major": "140",
+	"required": "false"
+	},
+  {
+    "course": "SYS 650",
+    "nonmajor": "107",
+    "major": "127",
+	"required": "true"
+	},
+  {
+    "course": "SYS 611",
+    "nonmajor": "142",
+    "major": "93",
+	"required": "false"
+	},
+  {
+    "course": "SYS 640",
+    "nonmajor": "61",
+    "major": "77",
+	"required": "false"
+	},
+  {
+    "course": "SYS 655",
+    "nonmajor": "12",
+    "major": "42",
+	"required": "false"
+	},
+  {
+    "course": "SYS 635",
+    "nonmajor": "49",
+    "major": "15",
+	"required": "false"
+	},
+  {
+    "course": "SYS 581",
+    "nonmajor": "23",
+    "major": "0",
+	"required": "false"
+	},
+  {
+    "course": "SYS 801",
+    "nonmajor": "2",
+    "major": "28",
+	"required": "false"
+	},
+  {
+    "course": "SYS 710",
+    "nonmajor": "14",
+    "major": "18",
+	"required": "false"
+	},
+  {
+    "course": "SYS 631",
+    "nonmajor": "2",
+    "major": "16",
+	"required": "false"
+	},
+  {
+    "course": "SYS 703",
+    "nonmajor": "7",
+    "major": "9",
+	"required": "false"
+	},
+  {
+    "course": "SYS 637",
+    "nonmajor": "28",
+    "major": "6",
+	"required": "false"
+	},
+  {
+    "course": "SYS 601",
+    "nonmajor": "11",
+    "major": "0",
+	"required": "false"
+	},
+  {
+    "course": "SYS 623",
+    "nonmajor": "2",
+    "major": "0",
+	"required": "false"
+	},
+  {
+    "course": "SYS 622",
+    "nonmajor": "1",
+    "major": "1",
+	"required": "false"
+	},
+  {
+    "course": "SYS 564",
+    "nonmajor": "1",
+    "major": "0",
+	"required": "true"
+	},
+  {
+    "course": "SYS 900",
+    "nonmajor": "2",
+    "major": "8",
+	"required": "false"
+	},
+  {
+    "course": "SSW 540",
+    "nonmajor": "229",
+    "major": "100",
+	"required": "true"
+	},
+  {
+    "course": "SSW 564",
+    "nonmajor": "60",
+    "major": "94",
+	"required": "true"
+	},
+  {
+    "course": "SSW 567",
+    "nonmajor": "49",
+    "major": "89",
+	"required": "true"
+	},
+  {
+    "course": "SSW 565",
+    "nonmajor": "73",
+    "major": "82",
+	"required": "true"
+	},
+  {
+    "course": "SSW 533",
+    "nonmajor": "54",
+    "major": "82",
+	"required": "true"
+	},
+  {
+    "course": "SSW 555",
+    "nonmajor": "69",
+    "major": "57",
+	"required": "true"
+	},
+  {
+    "course": "SSW 215",
+    "nonmajor": "3",
+    "major": "26",
+	"required": "false"
+	},
+  {
+    "course": "SSW 689",
+    "nonmajor": "9",
+    "major": "21",
+	"required": "false"
+	},
+  {
+    "course": "SSW 695",
+    "nonmajor": "2",
+    "major": "21",
+	"required": "true"
+	},
+  {
+    "course": "SSW 690",
+    "nonmajor": "2",
+    "major": "46",
+	"required": "true"
+	},
+  {
+    "course": "SSW 800",
+    "nonmajor": "6",
+    "major": "15",
+	"required": "false"
+	},
+  {
+    "course": "SSW 810",
+    "nonmajor": "2",
+    "major": "15",
+	"required": "false"
+	},
+  {
+    "course": "SSW 322",
+    "nonmajor": "0",
+    "major": "6",
+	"required": "false"
+	},
+  {
+    "course": "SSW 345",
+    "nonmajor": "0",
+    "major": "6",
+	"required": "false"
+	}
+]

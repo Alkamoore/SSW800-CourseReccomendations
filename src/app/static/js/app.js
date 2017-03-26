@@ -16,8 +16,30 @@ $(document).ready(function () {
 	}});
 	
 	angular.module('scheduler').directive('cStudentBody',  function() { return {
-		templateUrl: '/static/html/students.html'
-	}});
+		templateUrl: '/static/html/students.html',
+		controllerAs: 'students',
+		/**@ngInject**/controller: function($scope) {
+			var _this = this;
+			$scope.$watch(function() {
+				if( _this.studentInfoController === undefined) {
+					_this.studentInfoController = angular.element($('c-student-info')).controller('cStudentInfo');
+					return undefined;
+				}
+				else {
+					return _this.studentInfoController.cwid;
+				}
+			}, function(cwid) {
+				_this.cwid = cwid;
+                $.get("/api/students/info", {
+					cwid: _this.cwid
+				})
+				.done(function (data) {
+					_this.data = data;
+					$scope.$digest();
+					
+				});
+			});
+		}}});
 	
 	angular.module('scheduler').directive('cCalendarBody',  function() { return {
 		templateUrl: '/static/html/calendar.html'
@@ -127,7 +149,12 @@ $(document).ready(function () {
 	
 	angular.module('scheduler').directive('cStudentInfo', function() { return {
 		templateUrl: '/static/html/student_info.html',
-		/**@ngInject**/controller: function(ngDialog) {
+		controllerAs: 'cStudentInfoController',
+		/**@ngInject**/controller: function(ngDialog, $scope) {
+			this.setStudentCWID = function(cwid) { 
+				this.cwid = cwid;
+			}
+			
 			$('#student_tree')
             .on('changed.jstree', function (e, data) {
                 var i, j, r = [];
@@ -138,10 +165,9 @@ $(document).ready(function () {
                 console.log('Selected: ' + r.join(', '));
 
                 $.get("/api/students/info", {
-                    name: data.node.a_attr['data-name']
+                    cwid: data.node.a_attr['data-cwid']
                 })
 				.done(function (data) {
-
                         console.log(data);
                         var dialog = ngDialog.open({
                             template: '<div>' +
@@ -149,6 +175,7 @@ $(document).ready(function () {
                             '<div><p><b>Name:</b> ' + data.name + '</p><p><b>Campus Wide ID: </b>' + data.cwid  + '</p></div>' +
                             '<div><p><b>Courses Taken:</b> ' + data.courses + '</p></div>' +
                             '<br />' +
+							'<div><button class="inline close-this-dialog" ng-click="cStudentInfoController.setStudentCWID(' + data.cwid + ')">This is Me</button></div>' +
                             '</div>',
                             className: 'ngdialog-theme-default',
                             plain: true, /*Change this to false for external templates */
@@ -156,6 +183,7 @@ $(document).ready(function () {
                             closeByDocument: true,
                             closeByEscape: true,
                             appendTo: false,
+							scope: $scope
                         });
                     });
             })
