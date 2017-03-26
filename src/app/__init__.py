@@ -65,12 +65,32 @@ def get_student_tree():
 @flask_app.route('/api/popularity/major')
 def get_popular_for_major():
     """ List all courses in database in a tree """
-    return jsonify(results=list(db.popularity.find_popular_elective_for_major()))
+    major = request.args.get('major')
+	
+    if (major is None):
+        abort(400)
+    	
+    r = list(mongo_client.popularity.popularity.find({"required": 'false', "course": {'$regex': '^'+ major}}, {'_id': False}))
+
+    if r is not None:
+        return jsonify(r)
+
+    abort(404)
 
 @flask_app.route('/api/popularity/nonmajor')
 def get_popular_for_nonmajor():
     """ List all courses in database in a tree """
-    return jsonify(results=list(db.popularity.find_popular_elective_for_nonmajor()))
+    major = request.args.get('major')
+	
+    if (major is None):
+        abort(400)
+    	
+    r = list(mongo_client.popularity.popularity.find({"course": {'$regex': '^'+ major}}, {'_id': False}))
+
+    if r is not None:
+        return jsonify(r)
+
+    abort(404)
 	
 @flask_app.route('/api/students/info')
 def get_student_info():

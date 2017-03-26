@@ -38,17 +38,3 @@ def get_all():
     :return:
     """
     return mongo_client.popularity.popularity.find({}, {'_id': False}).sort([("course", 1)])
-
-def find_popular_elective_for_major(major):
-    """
-
-    :return:
-    """
-    return mongo_client.popularity.popularity.find({"required": "false"}, {"course": 1, "major": 1}).limit(5).sort([("course", 1)])
-	
-def find_popular_elective_for_nonmajor():
-    """
-
-    :return:
-    """
-    return mongo_client.popularity.popularity.find({}, {"course": 1, "nonmajor": 1}).limit(5).sort([("course", 1)])

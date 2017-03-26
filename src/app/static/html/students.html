@@ -1,7 +1,9 @@
-<div ng-if="students.cwid === undefined">Please Select Your Student ID to Begin</div>
+<div ng-if="students.cwid === undefined">
+	<h2>Please Select Your Student ID to Begin</h2>
+</div>
 <div ng-if="students.cwid !== undefined">
-	<h2>Student Info:</h2>
+	<h2>{{students.data.name}}</h2>
 	<p><b>Name:</b>  {{students.data.name}}</p>
-	<p><b>Campus Wide ID: </b> {{students.data.cwid}}  </p>
-	<p><b>Courses Taken:</b> {{students.data.courses}} </p>
+	<p><b>Campus Wide ID: </b> {{students.data.cwid}} </p>
+	<p><b>Courses Taken:</b> {{students.data.courses}}</p>
 </div>

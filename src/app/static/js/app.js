@@ -12,8 +12,39 @@ $(document).ready(function () {
         .controller('cSideCtrl', cSideCtrl);
 		
 	angular.module('scheduler').directive('cCourseBody',  function() { return {
-		templateUrl: '/static/html/reccomendations.html'
-	}});
+		templateUrl: '/static/html/reccomendations.html',
+		controllerAs: 'poprec',
+		/**@ngInject**/controller: function() {
+			var _this = this;
+			$.get("/api/popularity/major", {
+					major: "SYS"
+				})
+				.done(function (sys) {
+					console.log(sys);
+					_this.sys = sys;
+				});
+			$.get("/api/popularity/major", {
+					major: "SSW"
+				})
+				.done(function (ssw) {
+					console.log(ssw);
+					_this.ssw = ssw;
+				});
+			$.get("/api/popularity/nonmajor", {
+					major: "SYS"
+				})
+				.done(function (nsys) {
+					console.log(nsys);
+					_this.nsys = nsys;
+				});
+			$.get("/api/popularity/nonmajor", {
+					major: "SSW"
+				})
+				.done(function (nssw) {
+					console.log(nssw);
+					_this.nssw = nssw;
+				});
+		}}});
 	
 	angular.module('scheduler').directive('cStudentBody',  function() { return {
 		templateUrl: '/static/html/students.html',
