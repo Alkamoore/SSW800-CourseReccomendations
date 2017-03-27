@@ -30,15 +30,16 @@ Features from C. Davantzis SSW690 Project:
 	 
 Running Notes
 ---------
-The database can be populated from the command line by using update_db.py --courses --degrees --schedule --students
+The database can be populated from the command line by using update_db.py --courses --degrees --schedule --students --popularity --reviews
 
-Note, due to privacy concerns the student.json has not been uploaded. Instead create your own using the following format 
+Note, due to privacy concerns the student.json and reviews.json have not been uploaded. Instead create your own using the following format 
 
+For students.json: 
   { 
     "name" : "John Smith",
     "cwid" : "12345678",
 	"advisor" : "Jane Doe",
-	"major" : "SSE",
+	"major" : "SSW",
     "courses" : [
       [ 
 		"SSW 540",
@@ -47,6 +48,14 @@ Note, due to privacy concerns the student.json has not been uploaded. Instead cr
     ]
   }
 
+  For reviews.json:
+   {
+    "course": "SSW 555",
+    "cwid": "12345678",
+    "rating": "5",
+	"instructor": "Jane Doe",
+	"remarks": "I like this course."
+	}
 
 Requirements
 ---------
