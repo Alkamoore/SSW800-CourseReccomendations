@@ -6,4 +6,7 @@
 	<p><b>Name:</b>  {{students.data.name}}</p>
 	<p><b>Campus Wide ID: </b> {{students.data.cwid}} </p>
 	<p><b>Courses Taken:</b> {{students.data.courses}}</p>
+	
+	<h2>Courses Reviewed By Student:</h2>
+	<p ng-repeat="course in students.rev"><b>{{course.course}}</b> ({{course.rating}}/5 Stars) - {{course.remarks}}</b>
 </div>

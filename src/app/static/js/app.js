@@ -69,6 +69,14 @@ $(document).ready(function () {
 					$scope.$digest();
 					
 				});
+				$.get("/api/reviews/info", {
+					cwid: _this.cwid
+				})
+				.done(function (rev) {
+					_this.rev = rev;
+					$scope.$digest();
+					
+				});
 			});
 		}}});
 	

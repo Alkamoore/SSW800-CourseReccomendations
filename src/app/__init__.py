@@ -107,7 +107,20 @@ def get_student_info():
 
     abort(404)
 
+@flask_app.route('/api/reviews/info')
+def get_reviews():
+    """ Get the reviews written by a specified student """
+    cwid = request.args.get('cwid')
 
+    if (cwid is None):
+        abort(400)
+
+    r = list(mongo_client.reviews.reviews.find({"cwid": cwid},
+                                       {'_id': False}))
+    if r is not None:
+        return jsonify(r)
+
+    abort(404)
 
 @flask_app.route('/api/courses/info')
 def get_course_info():
