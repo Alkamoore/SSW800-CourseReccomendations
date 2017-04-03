@@ -5,8 +5,25 @@
 	<h2>{{students.data.name}}</h2>
 	<p><b>Name:</b>  {{students.data.name}}</p>
 	<p><b>Campus Wide ID: </b> {{students.data.cwid}} </p>
-	<p><b>Courses Taken:</b> {{students.data.courses}}</p>
+	<p><b>Courses Taken:</b> <span ng-repeat="c in students.data.courses">{{c}}{{$last ? '' : ', '}}</span></p>
 	
 	<h2>Courses Reviewed By Student:</h2>
 	<p ng-repeat="course in students.rev"><b>{{course.course}}</b> ({{course.rating}}/5 Stars) - {{course.remarks}}</b>
+
+	<p><fieldset>
+		<legend>Review a Course</legend>
+		<label for="course">Course ID: </label>
+		<select ng-model="revinput.course"><option id="course"  ng-repeat="c in students.data.courses">{{c}}</option></select>
+		<br />
+		<label for="rating">Course Rating:</label>
+		<select ng-model="revinput.rating"><option id="rating" ng-repeat="rate in ratings">{{rate}}</select>
+		<br />
+		<label for="instructor" >Instructor:</label>
+		<input type="text" ng-model="revinput.instructor" id="instructor">
+		<br />
+		<label for="remarks">Remarks: </label>
+		<textarea id="remarks" ng-model="revinput.remarks" rows="4" cols="100"></textarea>
+		<br />
+		<md-button class="revbutton" ng-click="students.addNewReview(revinput);">Add Review</md-button>
+	</fieldset></p>
 </div>

@@ -49,8 +49,9 @@ $(document).ready(function () {
 	angular.module('scheduler').directive('cStudentBody',  function() { return {
 		templateUrl: '/static/html/students.html',
 		controllerAs: 'students',
-		/**@ngInject**/controller: function($scope) {
+		/**@ngInject**/controller: function($scope, $http) {
 			var _this = this;
+			$scope.ratings = ["1", "2", "3", "4", "5"];
 			$scope.$watch(function() {
 				if( _this.studentInfoController === undefined) {
 					_this.studentInfoController = angular.element($('c-student-info')).controller('cStudentInfo');
@@ -77,6 +78,29 @@ $(document).ready(function () {
 					$scope.$digest();
 					
 				});
+				_this.addNewReview = function(revinput) {
+					 revinput.cwid = _this.cwid;
+					 $http.post("/api/reviews/add", {
+						cwid: revinput.cwid,
+						course: revinput.course,
+						rating: revinput.rating,
+						instructor: revinput.instructor,
+						remarks: revinput.remarks
+					 }).then(function(){
+						console.log("Successful!");
+						$.get("/api/reviews/info", {
+							cwid: _this.cwid
+						})
+						.done(function (rev) {
+							_this.rev = rev;
+							$scope.$digest();
+							
+						});
+					}, function() {
+						console.log("Error D:");
+						console.log(revinput.cwid);
+					});
+				};
 			});
 		}}});
 	

@@ -47,6 +47,7 @@ def static_file_hash(filename):
 def home():
     return render_template('index.html')
 
+""" Course Information """
 @flask_app.route('/api/courses/list')
 def get_courses():
     """ List all courses in database """
@@ -57,11 +58,24 @@ def get_course_tree():
     """ List all courses in database in a tree """
     return jsonify(results=list(db.catalog.courses.get_tree()))
 	
-@flask_app.route('/api/students/tree')
-def get_student_tree():
-    """ List all courses in database in a tree """
-    return jsonify(results=list(db.students.get_tree()))
-	
+@flask_app.route('/api/courses/info')
+def get_course_info():
+    """ Get the course info for a specified course """
+    letter = request.args.get('letter')
+    number = request.args.get('number')
+
+    if (letter is None) or (number is None):
+        abort(400)
+
+    r = mongo_client.catalog.courses.find_one({"letter": letter,
+                                               "number": number},
+                                              {'_id': False})
+    if r is not None:
+        return jsonify(r)
+
+    abort(404)
+
+""" Frequency Information """
 @flask_app.route('/api/popularity/major')
 def get_popular_for_major():
     """ List all courses in database in a tree """
@@ -91,7 +105,14 @@ def get_popular_for_nonmajor():
         return jsonify(r)
 
     abort(404)
-	
+
+""" Student Information """
+@flask_app.route('/api/students/tree')
+def get_student_tree():
+    """ List all courses in database in a tree """
+    return jsonify(results=list(db.students.get_tree()))
+
+
 @flask_app.route('/api/students/info')
 def get_student_info():
     """ Get the student info for a specified course """
@@ -107,6 +128,7 @@ def get_student_info():
 
     abort(404)
 
+""" Review Information """
 @flask_app.route('/api/reviews/info')
 def get_reviews():
     """ Get the reviews written by a specified student """
@@ -121,32 +143,37 @@ def get_reviews():
         return jsonify(r)
 
     abort(404)
+	
+@flask_app.route('/api/reviews/add', methods=['POST'])
+def add_reviews():
+    """ Add the reviews written by a specified student """
+    post = request.get_json()
+    cwid = str(post.get('cwid'))
+    course = post.get('course')
+    rating = post.get('rating')
+    instructor = post.get('instructor')
+    remarks = post.get('remarks')
 
-@flask_app.route('/api/courses/info')
-def get_course_info():
-    """ Get the course info for a specified course """
-    letter = request.args.get('letter')
-    number = request.args.get('number')
-
-    if (letter is None) or (number is None):
+    if (cwid is None or course is None):
         abort(400)
-
-    r = mongo_client.catalog.courses.find_one({"letter": letter,
-                                               "number": number},
-                                              {'_id': False})
+        
+    r = mongo_client.reviews.reviews.insert_one ({"cwid": cwid,  "instructor": instructor,
+                                                  "course": course, "rating": rating,
+                                                  "remarks": remarks})
+    
     if r is not None:
-        return jsonify(r)
+        return jsonify(status='OK',message='inserted successfully')
 
     abort(404)
 
 
+""" Schedule Information """
 @flask_app.route('/api/schedule/semesters', methods=['GET'])
 def get_scheduled_semesters():
     """ List all semesters available in schedule database """
     # TODO: Sort properly and provide full semester name
     # ^ Possibly store this information in a separate collection
     return jsonify(results=list(db.schedule.get_semesters()))
-
 
 @flask_app.route('/api/schedule/list')
 def get_scheduled_courses():
