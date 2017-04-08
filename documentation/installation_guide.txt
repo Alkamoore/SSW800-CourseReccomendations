@@ -1,0 +1,74 @@
+*****************************************************************
+*			Course Reccomendation System Install Guide			*
+*					  Last Update: 04/07/2017					*
+*****************************************************************
+The following steps are intended to set up your computer to run 
+the Course Recommendation System found at 
+(https://github.com/Alkamoore/SSW800-CourseReccomendations). The 
+steps written with Windows 10 in mind but overall steps should be 
+similar for most operating systems.
+
+Step 1: System Installation
+	Install the following required software needed to run the system. 
+Step 1.1: Python
+•	Go to https://www.python.org/downloads/ and select the appropriate
+	download. The software was written on Python version 3.6.1 and it
+	is not compatible with Python 2. 
+•	Once you have installed Python you will want to add it to your
+	environment variables:
+•	In Windows: Control Panel -> System -> Advanced System Settings 
+	-> Environment Variables (Note: on Linux or Mac this step is 
+	unnecessary)
+•	In the lower window ‘System Variables’, Select the ‘Path’ and 
+	add the Python Installation location to your environment variables. 
+	The current default installation location is  ‘C:\Python34’
+•	Now you can use Python from the command line and use that to install 
+	PIP. This will allow you to install Python modules like pip. 
+	
+Step 1.2: Pip and Flask
+•	Open Windows Explorer
+•	Then open a command line window by entering ‘cmd’ in the address bar
+	in Windows Explorer or by selecting File  Open Command Prompt in 
+	Windows Explorer 
+•	In the command line type: python -m pip install -U pip setuptools
+	(Note: On Linux or Mac the command is pip install -U pip setuptools)
+•	Now that you have pip you can use it to install flask by entering the 
+	following into your command line: pip install flask
+Step 1.3: MongoDB
+•	Next install MongoDB by going to https://www.mongodb.com/ and selecting
+	a download. 
+•	Go to the download location and hit install. 
+•	Select the default installation options and follow the commands
+Step 1.4: Initial Database Update
+•	Go to your MongoDB Server Installation and navigate to the bin directory. 
+	On Windows it looks something like: C:\Program Files\MongoDB\Server\3.4\bin
+•	Select and run mongod.exe then select and run mongo.exe
+•	Navigate to the directory where you downloaded the Course Recommendation
+	System project and go to the ‘src’ directory. 
+•	Open a command line window and type: python update_db.py --courses 
+	--degrees --schedule --students --popularity --reviews
+•	This will populate all databases. If you do not have access to the
+	students.json, you can create your own by navigating 
+	to: /src/app/db/students and creating a students.json
+•	The format for the students.json is as follows: 
+	  { 
+		"name" : "John Smith",
+		"cwid" : "12345678",
+		"advisor" : "Jane Doe",
+		"major" : "SSW",
+		"courses" : [
+			"SSW 540",
+			"SSW 555"
+		]
+	  }
+•	Note: After the initial installation if you want to update certain databases
+	just remove those arguments when running the update_db.py script
+Step 2: Running the System
+•	Start MongoDB by going to your MongoDB Server Installation and navigate 
+	to the bin directory. On Windows it looks something 
+	like: C:\Program Files\MongoDB\Server\3.4\bin
+•	Then select and run mongod.exe then select and run mongo.exe
+•	Navigate to the directory where you downloaded the Course Recommendation 
+	System project and go to the ‘src’ directory. 
+•	Then double click the run.py to begin running the system
+•	Finally, open a browser and navigation to http://127.0.0.1:5000 

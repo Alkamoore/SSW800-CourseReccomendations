@@ -34,6 +34,13 @@ MAJORS = {
     "TM": "Telecommunications Management"
 }
 
+REQCOURSES = {
+    "SSW" : ["SSW 540", "SSW 555", "SSW 564", "SSW 565", "SSW 567", "SSW 533", "SSW 690","SSW 695"],
+    "FE" : ["FE 610", "FE 620", "FE 621", "FE 630", "FE 580", "FE 800"],
+    "EM" : ["EM 600", "EM 605", "EM 612", "EM 624", "SYS 660", "SYS 611"],
+    "SYS" : ["SYS 671", "SYS 672", "SYS 673", "SYS 674", "SYS 612", "SYS 800"]
+}
+
 def load_data():
     """ Load Data From JSON File
 
@@ -62,6 +69,11 @@ def get_all():
     :return:
     """
     return mongo_client.students.students.find({}, {'_id': False}).sort([("name", 1)])
+
+"""def get_req():
+
+    cursor = mongo_client.students.students.aggregate(["$project": {diff:{$setUnion:[{$setDifference:["$courses", REQCOURSES.get("$major")]}, {$setDifference:[REQCOURSES.get("$major"), "$courses"]}]}
+"""   
 
 def get_tree():
     """

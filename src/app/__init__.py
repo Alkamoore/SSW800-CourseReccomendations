@@ -1,4 +1,5 @@
 import os
+import json
 
 from flask import Flask, render_template, jsonify, abort, request
 from werkzeug.local import LocalProxy
@@ -125,6 +126,44 @@ def get_student_info():
                                        {'_id': False})
     if r is not None:
         return jsonify(r)
+
+    abort(404)
+
+@flask_app.route('/api/students/req', methods=['POST'])
+def get_required_courses():
+    """ Get the student info for a specified course """
+    post = request.get_json()
+    cwid = str(post.get('cwid'))
+    major = str(post.get('major'))
+    
+    if(major is None or cwid is None):
+        abort(400)
+    
+    req = str(list(mongo_client.catalog.degrees.find({"id": major}, {"courseSet": 1, '_id': False})))
+    tak = str(list(mongo_client.students.students.find({"cwid": cwid}, {"courses": 1, '_id': False})))
+    rev = str(list(mongo_client.reviews.reviews.find({"cwid": cwid}, {"course": 1, '_id': False})))
+
+    req = req[16:(len(req)-3)]
+    tak = tak[14:(len(tak)-3)]
+    req = req.replace("'","")
+    tak = tak.replace("'","")
+    req = req.replace(", ",",")
+    tak = tak.replace(", ",",")
+    rev = rev.replace("'","")
+    rev = rev.replace("{course: ","")
+    rev = rev.replace("}","")
+    rev = rev[1:(len(rev)-1)]
+    rev = rev.replace(", ",",")
+    rlist = req.split(",")
+    tlist = tak.split(",")
+    qlist = rev.split(",")
+
+    rreq = list(set(rlist).difference(set(tlist)))
+    elec = list(set(tlist).difference(set(rlist)))
+    arev = list(set(tlist).difference(set(qlist)))
+
+    if rreq is not None and elec is not None:
+        return json.dumps({"electives": elec, "remaining": rreq, "available": arev})
 
     abort(404)
 

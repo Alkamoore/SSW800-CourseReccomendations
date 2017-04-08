@@ -171,7 +171,7 @@
     "course": "SSW 215",
     "nonmajor": "3",
     "major": "26",
-	"required": "false"
+	"required": "true"
 	},
   {
     "course": "SSW 689",
@@ -207,12 +207,12 @@
     "course": "SSW 322",
     "nonmajor": "0",
     "major": "6",
-	"required": "false"
+	"required": "true"
 	},
   {
     "course": "SSW 345",
     "nonmajor": "0",
     "major": "6",
-	"required": "false"
+	"required": "true"
 	}
 ]

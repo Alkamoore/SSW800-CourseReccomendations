@@ -1,33 +1,31 @@
 [ 
   { 
     "name" : "Software Engineering",
+	"id" : "SSW",
     "school" : "School of Systems and Enterprises",
     "type" : "Master of Science",
     "minCredits" : 30,
     "minDegreeCredits" : 24,
     "minGPA" : 0,
-    "possibleCourses" : {
-      "courseSet" : [ 
+	"courseSet" : [ 
         "SSW 540",
-        "SSW 555",
-        "SSW 564",
-        "SSW 565",
-        "SSW 567",
-        "SSW 533",
-        "SSW 690",
-        "SSW 695"
-      ],
-      "numCoursesFromSet" : 8
-    }
+		"SSW 555",
+		"SSW 564",
+		"SSW 565",
+		"SSW 567",
+		"SSW 533",
+		"SSW 690",
+		"SSW 695"
+      ]
   },
   { 
     "name" : "Financial Engineering",
+	"id" : "FE",
     "school" : "School of Systems and Enterprises",
     "type" : "Master of Science",
     "minCredits" : 30,
     "minDegreeCredits" : 18,
     "minGPA" : 0,
-    "possibleCourses" : {
       "courseSet" : [ 
         "FE 610",
         "FE 620",
@@ -35,93 +33,39 @@
         "FE 630",
         "FE 580",
         ["FE 800", "FE 900"]
-      ],
-      "numCoursesFromSet" : 6
-    }
+      ]
   },
   { 
     "name" : "Engineering Management",
+	"id" : "EM",
     "school" : "School of Systems and Enterprises",
     "type" : "Master of Engineering",
     "minCredits" : 30,
     "minDegreeCredits" : 18,
     "minGPA" : 0,
-    "possibleCourses" : {
-      "courseSet" : [ 
+    "courseSet" : [ 
         "EM 600",
         "EM 605",
-        ["EM 612", "EM 680"],
+        "EM 612",
         "EM 624",
         "SYS 660",
-        ["SYS 611", "SYS 681"]
-      ],
-      "numCoursesFromSet" : 6
-    }
+        "SYS 611"
+      ]
   },
   { 
     "name" : "Systems Engineering",
+	"id" : "SYS",
     "school" : "School of Systems and Enterprises",
     "type" : "Master of Engineering",
     "minCredits" : 30,
     "minDegreeCredits" : 18,
     "minGPA" : 0,
-    "possibleCourses" : {
-      "courseSet" : [ 
+    "courseSet" : [ 
         "SYS 625",
         "SYS 650",
         "SYS 605",
         "EM 612",
-        ["SYS 800", "SYS 900"]
-      ],
-      "numCoursesFromSet" : 5
-    }
-  },
-  { 
-    "minCredits" : 30,
-    "minDegreeCredits" : 21,
-    "minGPA" : 3,
-    "name" : "Computer Science",
-    "possibleCourses" : { 
-        "courseSet" : [ 
-            "CS 510",
-            "CS 511",
-            "CS 513",
-            "CS 520",
-            "CS 521",
-            "CS 522",
-            "CS 524",
-            "CS 526",
-            "CS 537",
-            "CS 541",
-            "CS 545",
-            "CS 546",
-            "CS 548",
-            "CS 549",
-            "CS 561",
-            "CS 573",
-            "CS 578",
-            "CS 600",
-            "CS 677",
-            "CS 694"
-          ],
-        "numCoursesFromSet" : 3
-      },
-    "possibleRelatedFields" : { 
-        "fieldsSet" : [ 
-            "Cloud Computing",
-            "Databases",
-            "Gaming and Simulation",
-            "Mobile Systems",
-            "Modeling, Simulation, and Visualization",
-            "Network and Systems Administration",
-            "Secure Systems",
-            "Software Development",
-            "Visual Computing and Information Extraction",
-            "Web Application Development"
-          ],
-        "numCoursesFromSet" : 3
-      },
-    "school" : "Schaefer School of Engineering and Science",
-    "type" : "Master of Science"
+        "SYS 800"
+      ]
   }
 ]

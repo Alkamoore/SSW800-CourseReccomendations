@@ -6,6 +6,8 @@
 	<p><b>Name:</b>  {{students.data.name}}</p>
 	<p><b>Campus Wide ID: </b> {{students.data.cwid}} </p>
 	<p><b>Courses Taken:</b> <span ng-repeat="c in students.data.courses">{{c}}{{$last ? '' : ', '}}</span></p>
+	<p><b>Electives Taken:</b> <span ng-repeat="e in students.req.electives">{{e}}{{$last ? '' : ', '}}</span></p>
+	<p><b>Required Courses Remaining:</b> <span ng-repeat="r in students.req.remaining">{{r}}{{$last ? '' : ', '}}</span></p>
 	
 	<h2>Courses Reviewed By Student:</h2>
 	<p ng-repeat="course in students.rev"><b>{{course.course}}</b> ({{course.rating}}/5 Stars) - {{course.remarks}}</b>
@@ -13,7 +15,7 @@
 	<p><fieldset>
 		<legend>Review a Course</legend>
 		<label for="course">Course ID: </label>
-		<select ng-model="revinput.course"><option id="course"  ng-repeat="c in students.data.courses">{{c}}</option></select>
+		<select ng-model="revinput.course"><option id="course"  ng-repeat="c in students.req.available">{{c}}</option></select>
 		<br />
 		<label for="rating">Course Rating:</label>
 		<select ng-model="revinput.rating"><option id="rating" ng-repeat="rate in ratings">{{rate}}</select>

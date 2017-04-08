@@ -67,6 +67,16 @@ $(document).ready(function () {
 				})
 				.done(function (data) {
 					_this.data = data;
+					$http.post("/api/students/req", {
+						cwid: _this.cwid,
+						major: data.major
+					})
+					.then(function (req) {
+						console.log("Success!");
+						_this.req = req.data;
+					}, function() {
+						console.log("Error D:");
+					});
 					$scope.$digest();
 					
 				});

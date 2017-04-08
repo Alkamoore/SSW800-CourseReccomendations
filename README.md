@@ -18,18 +18,21 @@ New Features:
 - Recommendation System 
 	 - Review courses taken
 	 - Recommend Course to Others
+- Frequency
+	 - View most frequently taken courses
 
 Features from C. Davantzis SSW690 Project:
 ---------
-
  - Background process that is linked to university registration system
 	 - Able to download course information
 	 - Class name, Time, Occupancy
  - Course Information
 	 - Displays name, relevant description, course number
 	 
-Running Notes
+Running Notes:
 ---------
+Please view installation information and other relevant documentation in the documentation folder. 
+
 The database can be populated from the command line by using update_db.py --courses --degrees --schedule --students --popularity --reviews
 
 Note, due to privacy concerns the student.json and reviews.json have not been uploaded. Instead create your own using the following format 
