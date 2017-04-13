@@ -18,8 +18,12 @@ def terms():
     :returns: A list of term codes and names
     :rtype: list
     """
+    t = list()
     f = urllib.request.urlopen("https://web.stevens.edu/scheduler/core/core.php?cmd=terms")
-    return re_terms.findall(str(f.read()))
+    for  term in minidom.parse(f).getElementsByTagName("Term"):
+        t.append(term.getAttribute('Code'))
+
+    return t
 
 
 def courses(term):
@@ -28,9 +32,9 @@ def courses(term):
     :returns: A generator yielding course information for selected term
     :rtype: generator
     """
-    f = urllib.request.urlopen('https://web.stevens.edu/scheduler/core/core.php?cmd=getxml&term={0}'.format(term))
+    print(term)
+    f = urllib.request.urlopen('https://web.stevens.edu/scheduler/core/core.php?cmd=getxml&term='+term)
     for course in minidom.parse(f).getElementsByTagName("Course"):
-
         # Basic Course Information
         c = {"_id": course.getAttribute('CallNumber'),
              "title": course.getAttribute('Title'),

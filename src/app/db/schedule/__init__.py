@@ -9,14 +9,14 @@ def update_db(newest_terms=0):
     db = mongo_client.schedule
     for term in middleware.terms()[-newest_terms:]:
         print("Updating db {0}".format(term))
-        new_data = list(middleware.courses(term[0]))
+        new_data = list(middleware.courses(term))
         if len(new_data) != 0:
-            if term[0] not in db.collection_names():
-                db[term[0]].insert_many(new_data)
+            if term not in db.collection_names():
+                db[term].insert_many(new_data)
             else:
                 db.temp.drop()
                 db.temp.insert_many(new_data)
-                db.temp.aggregate([{"$out": term[0]}])
+                db.temp.aggregate([{"$out": term}])
                 db.temp.drop()
 
 

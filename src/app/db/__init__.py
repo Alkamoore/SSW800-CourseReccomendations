@@ -13,7 +13,7 @@ def update(update_courses=True, update_degrees=True, update_schedule=True, updat
         catalog.degrees.update_db()
 
     if update_schedule:
-        schedule.update_db(newest_terms=2)
+        schedule.update_db(newest_terms=5)
 		
     if update_students:
         students.update_db()
