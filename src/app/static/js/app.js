@@ -44,6 +44,13 @@ $(document).ready(function () {
 					console.log(nssw);
 					_this.nssw = nssw;
 				});
+			$.get("/api/popularity/rating", {
+					major: "SSW"
+				})
+				.done(function (rssw) {
+					console.log(rssw);
+					_this.rssw = rssw;
+				});
 		}}});
 	
 	angular.module('scheduler').directive('cStudentBody',  function() { return {

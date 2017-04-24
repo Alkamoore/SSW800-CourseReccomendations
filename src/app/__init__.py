@@ -71,6 +71,7 @@ def get_course_info():
     r = mongo_client.catalog.courses.find_one({"letter": letter,
                                                "number": number},
                                               {'_id': False})
+
     if r is not None:
         return jsonify(r)
 
@@ -105,6 +106,54 @@ def get_popular_for_nonmajor():
     if r is not None:
         return jsonify(r)
 
+    abort(404)
+
+@flask_app.route('/api/popularity/rating')
+def get_highest_rated():
+    """ List all courses in database in a tree """
+    major = request.args.get('major')
+    
+    if (major is None):
+        abort(400)
+    	
+    c = str(list(mongo_client.reviews.reviews.find({"course": {'$regex': '^'+ major}}, {'course': 1, '_id': False}).sort([("course", 1)])))
+    c = c.replace("'","")
+    c = c.replace("{course: ","")
+    c = c.replace("}, ",",")
+    c = c.replace("}","")
+    c = c.replace("[","")
+    c = c.replace("]","")
+    clist = c.split(",")
+    cout = []
+    seen = set()
+
+    for i in clist:
+        if i not in seen:
+            cout.append(i)
+            seen.add(i)
+
+    r = []
+    for c in cout:
+        rtemp = str(list(mongo_client.reviews.reviews.find({"course": c}, {'rating': 1, '_id': False}).sort([("course", 1)])))
+        rtemp = rtemp.replace("'","")
+        rtemp = rtemp.replace("{rating: ","")
+        rtemp = rtemp.replace("}, ",",")
+        rtemp = rtemp.replace("}","")
+        rtemp = rtemp.replace("[","")
+        rtemp = rtemp.replace("]","")
+        rlist = rtemp.split(",")
+        rlist= list(map(int, rlist))
+        r.append({"course": c , "rating": sum(rlist)/len(rlist)})
+
+    r= list(sorted(r, key=lambda x: x['rating'], reverse=True))
+    print(rtemp)
+    print(rlist)
+    print(cout)
+    print(r)
+    
+    if r is not None:
+        return jsonify(r)
+    
     abort(404)
 
 """ Student Information """
@@ -217,7 +266,7 @@ def get_scheduled_semesters():
 @flask_app.route('/api/schedule/list')
 def get_scheduled_courses():
     """ List all courses in database for a specified semester """
-    return jsonify(results=list(db.schedule.get_all()))
+    return jsonify(results=list(db.schedule.get_tree(semester)))
 
 
 @flask_app.route('/api/schedule/tree')

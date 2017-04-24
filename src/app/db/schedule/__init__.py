@@ -30,10 +30,16 @@ def get_all():
     """
     :return:
     """
-    return mongo_client.schedule["2016F"].find({}, {'_id': False})
+    return mongo_client.schedule["2017S"].find({}, {'_id': False})
+
+def get_course(course):
+    """
+    :return:
+    """
+    return mongo_client.schedule["2017S"].find({"section": section}, {'_id': False})
 
 
-def get_tree(semester="2016F"):
+def get_tree(semester="2017S"):
     """
     :return:
     """
