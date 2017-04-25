@@ -4,8 +4,8 @@ import re
 import urllib.request
 from xml.dom import minidom
 
-__author__ = "Constantine Davantzis"
-__status__ = "Prototype"
+__author__ = "Constantine Davantzis & Alexis Moore"
+__status__ = "Complete"
 
 # Compile regular expression to find terms in XML response.
 re_terms = re.compile(r'<Term Code="(.*)" Name="(.*)"/>')
